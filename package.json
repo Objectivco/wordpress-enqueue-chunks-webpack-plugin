@@ -15,7 +15,8 @@
     "test:js": "export NODE_ENV=test && jest --verbose",
     "test:watch": "npm run test:js -- --watch",
     "test": "npm run test:php && npm run test:js",
-    "preflight": "npm run lint && npm run test"
+    "preflight": "npm run lint && npm run test",
+    "release": "branch-release"
   },
   "keywords": [
     "webpack",
