@@ -1,4 +1,4 @@
-import { compilation } from 'webpack';
+import { Compilation, Chunk } from 'webpack';
 
 export interface Options {
     context?: 'plugin' | 'theme';
@@ -26,6 +26,6 @@ export interface Manifest {
 }
 
 export interface ChunkGroup {
-    name: string;
-    chunks: compilation.Chunk[];
+    name?: string;
+    chunks: Chunk[];
 }

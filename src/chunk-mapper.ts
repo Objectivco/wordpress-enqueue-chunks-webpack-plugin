@@ -1,4 +1,5 @@
-import { compilation } from 'webpack';
+import { Compilation, Chunk } from "webpack";
+
 import {
     ChunkGroup,
     Chunks,
@@ -24,7 +25,7 @@ export function addEntry({ name, chunks }: ChunkGroup) {
     });
 }
 
-export function mapDependencies(name: string, chunks: compilation.Chunk[]): string[] {
+export function mapDependencies(name: string, chunks: Chunk[]): string[] {
     return chunks
         .filter(chunk => {
             addChunk(chunk);
@@ -33,7 +34,7 @@ export function mapDependencies(name: string, chunks: compilation.Chunk[]): stri
         .map(c => c.name);
 }
 
-export function addChunk({ name, hash, files }: compilation.Chunk) {
+export function addChunk({ name, hash, files }: Chunk) {
     if (chunksMap.has(name)) {
         return;
     }
@@ -43,7 +44,7 @@ export function addChunk({ name, hash, files }: compilation.Chunk) {
     });
 }
 
-export function makeManifest(comp: compilation.Compilation): Manifest {
+export function makeManifest(comp: Compilation): Manifest {
     comp.chunkGroups.forEach(group => addEntry(group));
     return {
         chunks: mapToObject<Chunks>(chunksMap),

@@ -1,4 +1,4 @@
-import { Compiler, Plugin, Stats } from 'webpack';
+import { Compiler, Stats, WebpackPluginInstance as Plugin } from 'webpack';
 import { makeManifest } from './chunk-mapper';
 import * as TemplateProcessor from './template-utils';
 import { Manifest, Options } from './type';
