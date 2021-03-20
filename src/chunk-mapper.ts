@@ -44,8 +44,12 @@ export function addChunk({ id, name, hash, files }: Chunk) {
     if (chunksMap.has(chunkName)) {
         return;
     }
+
+    const fileIterator = files.values();
+    const firstFile = fileIterator.next();
+
     chunksMap.set(chunkName, {
-        file: files[0],
+        file: firstFile.value,
         hash,
     });
 }
