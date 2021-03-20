@@ -3,8 +3,8 @@
     "description": "A webpack plugin that manages registering and enqueing split chunks in a wordpress environment",
     "type": "library",
     "require-dev": {
-        "kahlan/kahlan": "^4.3",
-        "eloquent/phony-kahlan": "^1.0"
+        "kahlan/kahlan": "^5.0.8",
+        "eloquent/phony-kahlan": "^4.0"
     },
     "license": "MIT",
     "authors": [

@@ -1,39 +1,48 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "hash": "7d3a421433bd798f8d99ce26844e78cd",
-    "content-hash": "029da9f07742ff413de60ca2d9618033",
+    "content-hash": "a57bf0eeca6c41e01d2e36dbf672d200",
     "packages": [],
     "packages-dev": [
         {
             "name": "eloquent/phony",
-            "version": "2.0.1",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/eloquent/phony.git",
-                "reference": "cdda528e448f717c6472f2c412f1e58dbbb740cb"
+                "reference": "4ff70c4b787fe51754d41913005e6fa532bfd9a1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/eloquent/phony/zipball/cdda528e448f717c6472f2c412f1e58dbbb740cb",
-                "reference": "cdda528e448f717c6472f2c412f1e58dbbb740cb",
+                "url": "https://api.github.com/repos/eloquent/phony/zipball/4ff70c4b787fe51754d41913005e6fa532bfd9a1",
+                "reference": "4ff70c4b787fe51754d41913005e6fa532bfd9a1",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7"
+                "php": "^7.3 || ^8"
             },
             "require-dev": {
+                "eloquent/code-style": "^1.0",
+                "eloquent/phpstan-phony": "^0.7",
                 "errors/exceptions": "^0.2",
                 "ext-pdo": "*",
                 "friendsofphp/php-cs-fixer": "^2",
                 "hamcrest/hamcrest-php": "^2",
-                "icecave/semver": "^3",
-                "phpunit/phpunit": "^6"
+                "phpstan/extension-installer": "^1",
+                "phpstan/phpstan": "^0.12",
+                "phpstan/phpstan-phpunit": "^0.12",
+                "phpunit/phpunit": "^9"
             },
+            "default-branch": true,
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "5.1.x-dev"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "Eloquent\\Phony\\": "src"
@@ -67,32 +76,46 @@
                 "stubbing",
                 "test"
             ],
-            "time": "2017-10-05 22:07:57"
+            "support": {
+                "issues": "https://github.com/eloquent/phony/issues",
+                "source": "https://github.com/eloquent/phony/tree/master"
+            },
+            "time": "2021-03-15T01:01:52+00:00"
         },
         {
             "name": "eloquent/phony-kahlan",
-            "version": "1.0.1",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/eloquent/phony-kahlan.git",
-                "reference": "2e0197c84121a94a79a038d9e4b19c750ea7fd18"
+                "reference": "51eea2cc4f46cebc0265a6e6672433cbd33bab6f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/eloquent/phony-kahlan/zipball/2e0197c84121a94a79a038d9e4b19c750ea7fd18",
-                "reference": "2e0197c84121a94a79a038d9e4b19c750ea7fd18",
+                "url": "https://api.github.com/repos/eloquent/phony-kahlan/zipball/51eea2cc4f46cebc0265a6e6672433cbd33bab6f",
+                "reference": "51eea2cc4f46cebc0265a6e6672433cbd33bab6f",
                 "shasum": ""
             },
             "require": {
-                "eloquent/phony": "^2",
-                "kahlan/kahlan": "^4",
-                "php": ">=7"
+                "eloquent/phony": "^5",
+                "kahlan/kahlan": "^5",
+                "php": "^7.3 || ^8"
             },
             "require-dev": {
+                "eloquent/code-style": "^1",
+                "eloquent/phpstan-phony": "^0.7",
                 "errors/exceptions": "^0.2",
-                "friendsofphp/php-cs-fixer": "^2"
+                "friendsofphp/php-cs-fixer": "^2",
+                "phpstan/extension-installer": "^1",
+                "phpstan/phpstan": "^0.12"
             },
+            "default-branch": true,
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.1.x-dev"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "Eloquent\\Phony\\Kahlan\\": "src"
@@ -126,27 +149,31 @@
                 "stubbing",
                 "test"
             ],
-            "time": "2017-10-16 22:19:50"
+            "support": {
+                "issues": "https://github.com/eloquent/phony-kahlan/issues",
+                "source": "https://github.com/eloquent/phony-kahlan/tree/4.0.0"
+            },
+            "time": "2020-12-30T03:30:27+00:00"
         },
         {
             "name": "kahlan/kahlan",
-            "version": "4.3.1",
+            "version": "5.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kahlan/kahlan.git",
-                "reference": "92dbe4691f2f3049523cc525365a1a0be0c86db9"
+                "reference": "4638c4317ed19ac1c57be76daa2ab9f4a7f4338e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kahlan/kahlan/zipball/92dbe4691f2f3049523cc525365a1a0be0c86db9",
-                "reference": "92dbe4691f2f3049523cc525365a1a0be0c86db9",
+                "url": "https://api.github.com/repos/kahlan/kahlan/zipball/4638c4317ed19ac1c57be76daa2ab9f4a7f4338e",
+                "reference": "4638c4317ed19ac1c57be76daa2ab9f4a7f4338e",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.5"
+                "php": ">=7.1"
             },
             "require-dev": {
-                "squizlabs/php_codesniffer": "^2.7"
+                "squizlabs/php_codesniffer": "^3.4"
             },
             "bin": [
                 "bin/kahlan"
@@ -180,7 +207,11 @@
                 "testing",
                 "unit test"
             ],
-            "time": "2018-09-28 15:39:00"
+            "support": {
+                "issues": "https://github.com/kahlan/kahlan/issues",
+                "source": "https://github.com/kahlan/kahlan/tree/5.0.8"
+            },
+            "time": "2021-02-22T15:14:13+00:00"
         }
     ],
     "aliases": [],
@@ -189,5 +220,6 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "2.0.0"
 }
