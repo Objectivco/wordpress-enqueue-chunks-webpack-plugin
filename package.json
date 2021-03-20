@@ -16,7 +16,7 @@
     "test:watch": "npm run test:js -- --watch",
     "test": "npm run test:php && npm run test:js",
     "preflight": "npm run lint && npm run test",
-    "release": "branch-release"
+    "release": "branch-release -s build -d lib"
   },
   "keywords": [
     "webpack",
