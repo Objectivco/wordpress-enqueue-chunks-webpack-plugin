@@ -31,6 +31,7 @@ export function mapDependencies(name: string, chunks: Chunk[]): string[] {
             addChunk(chunk);
             return chunk.name !== name;
         })
+        .filter(chunk => chunk)
         .map(c => c.name || c.id + '');
 }
 
