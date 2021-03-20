@@ -31,14 +31,19 @@ export function mapDependencies(name: string, chunks: Chunk[]): string[] {
             addChunk(chunk);
             return chunk.name !== name;
         })
-        .map(c => c.name);
+        .map(c => c.name || c.id + '');
 }
 
-export function addChunk({ name, hash, files }: Chunk) {
-    if (chunksMap.has(name)) {
+export function addChunk({ id, name, hash, files }: Chunk) {
+    // Although the type definitions say that name is a string, we have experienced that some dynamically generated
+    // chunks will have a name of undefined, but have a valid id, so we will try to use the name, but fallback to id
+    // here to make sure, we always have a valid name.
+    const chunkName = name || id;
+
+    if (chunksMap.has(chunkName)) {
         return;
     }
-    chunksMap.set(name, {
+    chunksMap.set(chunkName, {
         file: files[0],
         hash,
     });
