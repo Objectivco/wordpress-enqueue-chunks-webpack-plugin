@@ -7,8 +7,8 @@ import {
     Manifest,
 } from './type';
 
-export const entriesMap = new Map();
-export const chunksMap = new Map();
+export let entriesMap = new Map();
+export let chunksMap = new Map();
 
 export const mapToObject = <T>(map: Map<any, any>): T | {} => Array.from(map.entries())
     .reduce((obj, [ k, v ]) => {
@@ -55,6 +55,9 @@ export function addChunk({ id, name, hash, files }: Chunk) {
 }
 
 export function makeManifest(comp: Compilation): Manifest {
+    // Reset global entriesMap and chunksMap to default state before each run
+    entriesMap = new Map();
+    chunksMap = new Map();
     comp.chunkGroups.forEach(group => addEntry(group));
     return {
         chunks: mapToObject<Chunks>(chunksMap),
