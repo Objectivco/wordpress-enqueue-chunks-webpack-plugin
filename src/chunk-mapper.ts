@@ -36,9 +36,6 @@ export function mapDependencies(name: string, chunks: Chunk[]): string[] {
 }
 
 export function addChunk({ id, name, hash, files }: Chunk) {
-    // Although the type definitions say that name is a string, we have experienced that some dynamically generated
-    // chunks will have a name of undefined, but have a valid id, so we will try to use the name, but fallback to id
-    // here to make sure, we always have a valid name.
     const chunkName = name || id;
 
     if (chunksMap.has(chunkName)) {
@@ -47,19 +44,24 @@ export function addChunk({ id, name, hash, files }: Chunk) {
 
     const fileIterator = files.values();
 
-    // Skip over any CSS files here
-    let firstFile: string = null;
+    let firstJsFile = null;
+    let firstFile = null;
 
     for (const file of fileIterator) {
-        if (!file.endsWith('.css')) {
-            firstFile = file;
+        if (!firstFile) {
+            firstFile = file; // Keep track of the first file regardless of type
+        }
+        if (file.endsWith('.js')) {
+            firstJsFile = file; // Keep track of the first JS file
             break;
         }
     }
 
-    if (firstFile) {
+    const fileToAdd = firstJsFile || firstFile; // Prefer JS file, fallback to first file if no JS file is found
+
+    if (fileToAdd) {
         chunksMap.set(chunkName, {
-            file: firstFile,
+            file: fileToAdd,
             hash,
         });
     }
