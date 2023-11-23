@@ -46,12 +46,23 @@ export function addChunk({ id, name, hash, files }: Chunk) {
     }
 
     const fileIterator = files.values();
-    const firstFile = fileIterator.next();
 
-    chunksMap.set(chunkName, {
-        file: firstFile.value,
-        hash,
-    });
+    // Skip over any CSS files here
+    let firstFile: string = null;
+
+    for (const file of fileIterator) {
+        if (!file.endsWith('.css')) {
+            firstFile = file;
+            break;
+        }
+    }
+
+    if (firstFile) {
+        chunksMap.set(chunkName, {
+            file: firstFile,
+            hash,
+        });
+    }
 }
 
 export function makeManifest(comp: Compilation): Manifest {
