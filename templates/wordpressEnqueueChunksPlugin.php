@@ -157,9 +157,9 @@ function register($asset, array $args)
     if (isRegistered($asset)) {
         return true;
     }
-    $filtered = apply_filters("wpecp/register", array_values($args), $asset);
+    $filtered = apply_filters("wpecp/register", $args, $asset);
     $filtered = apply_filters("wpecp/register/$asset", $filtered);
-    $success = call_user_func_array('wp_register_script', $filtered);
+    $success = call_user_func_array('wp_register_script', array_values($filtered));
     if (!$success) {
         throw new AssetRegistrationException("Unable to register asset $asset!");
     }
