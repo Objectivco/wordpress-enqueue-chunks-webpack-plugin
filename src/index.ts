@@ -11,6 +11,7 @@ export default class implements Plugin {
             delimiter: '-',
             namespace: '',
             phpScriptDir: process.cwd(),
+            configName: 'default',
         };
         this.opts = Object.assign({}, defaults, opts);
     }
@@ -31,10 +32,14 @@ export default class implements Plugin {
 
     protected makePhpScript(manifest: Manifest) {
         const { readTemplate, writeTemplate, injectProps } = TemplateProcessor;
-        const { namespace, delimiter, phpScriptDir } = this.opts;
+        const { namespace, delimiter, phpScriptDir, configName } = this.opts;
         const prefix = namespace ? `${namespace}${delimiter}` : '';
+        const configTemplate = readTemplate('config.json');
+        const configProcessed = injectProps(configTemplate, { manifest });
+        writeTemplate(configProcessed, phpScriptDir, `config-${configName}.json`);
+
         const template = readTemplate('wordpressEnqueueChunksPlugin.php');
-        const processed = injectProps(template, { ...this.opts, manifest, prefix });
+        const processed = injectProps(template, { ...this.opts, prefix });
         writeTemplate(processed, phpScriptDir, 'wordpressEnqueueChunksPlugin.php');
     }
 }
