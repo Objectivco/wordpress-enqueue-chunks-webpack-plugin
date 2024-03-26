@@ -6,6 +6,7 @@ export interface Options {
     delimiter?: string;
     assetsDir: string;
     phpScriptDir: string;
+    configName?: string;
 }
 
 export interface EntryMeta {

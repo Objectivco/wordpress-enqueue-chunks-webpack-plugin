@@ -41,12 +41,27 @@ class AssetRegistrationException extends \Exception
 function get($key)
 {
     static $config = null;
-    if (defined('WPECP_TEST') && WPECP_TEST) {
-        return WPECP_TEST_CONFIG[$key];
+
+    if ( defined('WPECP_TEST') && WPECP_TEST ) {
+        return WPECP_TEST_CONFIG[ $key ];
     }
-    if (is_null($config)) {
-        $config = json_decode('{% props %}', true);
+
+    $generalConfig = json_decode('{% props %}', true);
+
+    if ( is_null( $config ) ) {
+        $configFiles = glob( __DIR__ . '/config-*.json' );
+        $config = array( 'manifest' => array() );
+
+        foreach ( $configFiles as $file ) {
+            $fileConfig = json_decode( file_get_contents( $file ), true );
+            if ( is_array( $fileConfig ) ) {
+                $config = array_replace_recursive($config, $fileConfig);
+            }
+        }
+
+        $config = array_replace_recursive($config, $generalConfig);
     }
+
     return isset($config[$key]) ? $config[$key] : null;
 }
 
